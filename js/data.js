@@ -25,7 +25,7 @@ window.PAGES = [
   },
   {
     title: "Charts That Represent Jia",
-    text: "Drop some pics (fixed)",
+    text: "Drop some pics (fixed x2)",
     type: "images",
     imageBoxes: 4
   }
