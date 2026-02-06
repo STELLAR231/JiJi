@@ -25,7 +25,7 @@ window.PAGES = [
   },
   {
     title: "Charts That Represent Jia",
-    text: "Drop some pics that just scream Jia energy. Whatever you think fits.",
+    text: "Drop some pics (fixed)",
     type: "images",
     imageBoxes: 4
   }

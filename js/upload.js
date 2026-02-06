@@ -1,5 +1,6 @@
-// FreeImage.host Image Upload Module
-const API_KEY = "6d207e02198a847aa98d0a2a901485a5";
+// Cloudinary Image Upload Module
+const CLOUDINARY_CLOUD_NAME = "duim49h6r";
+const CLOUDINARY_API_KEY = "wPF1vV-YzSWaTm8fwAjM1B5OnR8";
 
 window.uploadedImages = {};
 
@@ -10,20 +11,25 @@ window.uploadImage = async function(boxId, file) {
   }
 
   const formData = new FormData();
-  formData.append("source", file);
-  formData.append("key", API_KEY);
+  formData.append("file", file);
+  formData.append("upload_preset", "jia_birthday");
+  formData.append("cloud_name", CLOUDINARY_CLOUD_NAME);
 
   try {
-    const response = await fetch("https://freeimage.host/api/1/upload", {
+    const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`, {
       method: "POST",
       body: formData,
     });
 
+    if (!response.ok) {
+      throw new Error("Upload failed");
+    }
+
     const result = await response.json();
     
-    if (result.success && result.image) {
-      const imageUrl = result.image.url;
-      const imageId = result.image.id;
+    if (result.secure_url) {
+      const imageUrl = result.secure_url;
+      const imageId = result.public_id;
       
       window.uploadedImages[boxId] = {
         url: imageUrl,
@@ -33,11 +39,11 @@ window.uploadImage = async function(boxId, file) {
       window.renderImageBox(boxId, imageUrl);
       return true;
     } else {
-      throw new Error(result.error?.message || "Upload failed");
+      throw new Error("Invalid response from Cloudinary");
     }
   } catch (error) {
     console.error("Upload error:", error);
-    alert("Failed to upload image");
+    alert("Failed to upload image. Make sure the upload_preset 'jia_birthday' is configured in Cloudinary as unsigned.");
     return false;
   }
 };
@@ -47,15 +53,16 @@ window.deleteImage = async function(boxId) {
   if (!imageData) return;
 
   try {
-    const response = await fetch("https://freeimage.host/api/1/delete/" + imageData.id, {
-      method: "GET",
-      headers: {
-        "key": API_KEY,
-      },
+    const formData = new FormData();
+    formData.append("public_id", imageData.id);
+
+    const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/destroy`, {
+      method: "POST",
+      body: formData,
     });
 
     const result = await response.json();
-    if (result.success) {
+    if (result.result === "ok") {
       delete window.uploadedImages[boxId];
       window.renderImageBox(boxId, null);
     }
