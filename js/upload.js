@@ -10,7 +10,7 @@ window.uploadImage = async function(boxId, file) {
   }
 
   const formData = new FormData();
-  formData.append("file", file);
+  formData.append("source", file);
   formData.append("key", API_KEY);
 
   try {
@@ -19,29 +19,25 @@ window.uploadImage = async function(boxId, file) {
       body: formData,
     });
 
-    if (!response.ok) {
-      throw new Error("Upload failed");
-    }
-
     const result = await response.json();
     
-    if (!result.image || !result.image.url) {
-      throw new Error("Invalid response from server");
+    if (result.success && result.image) {
+      const imageUrl = result.image.url;
+      const imageId = result.image.id;
+      
+      window.uploadedImages[boxId] = {
+        url: imageUrl,
+        id: imageId,
+      };
+
+      window.renderImageBox(boxId, imageUrl);
+      return true;
+    } else {
+      throw new Error(result.error?.message || "Upload failed");
     }
-
-    const imageUrl = result.image.url;
-    const imageId = result.image.id;
-    
-    window.uploadedImages[boxId] = {
-      url: imageUrl,
-      id: imageId,
-    };
-
-    window.renderImageBox(boxId, imageUrl);
-    return true;
   } catch (error) {
     console.error("Upload error:", error);
-    alert("Failed to upload image: " + error.message);
+    alert("Failed to upload image");
     return false;
   }
 };
@@ -58,15 +54,13 @@ window.deleteImage = async function(boxId) {
       },
     });
 
-    if (response.ok) {
+    const result = await response.json();
+    if (result.success) {
       delete window.uploadedImages[boxId];
       window.renderImageBox(boxId, null);
-    } else {
-      alert("Failed to delete image");
     }
   } catch (error) {
     console.error("Delete error:", error);
-    alert("Error deleting image");
   }
 };
 
@@ -99,7 +93,8 @@ window.handleImageUpload = async function(boxId, file) {
   if (file) {
     const success = await window.uploadImage(boxId, file);
     if (!success) {
-      document.getElementById(`image-box-${boxId}`).querySelector("input").value = "";
+      const input = document.getElementById(`image-box-${boxId}`).querySelector("input");
+      if (input) input.value = "";
     }
   }
 };
