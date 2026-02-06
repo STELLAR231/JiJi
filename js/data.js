@@ -23,11 +23,12 @@ window.PAGES = [
       beingBigger: { value: 0, label: "Being The Bigger Person (Lol nah)" }
     }
   },
-      title: "Memes That Represent Jia",
-      text: "Here, I present to you some memes that I bothered to find after exactly 15 minutes of browsing my god forsaken pinterest feed upon researching on a moody, 1080p, anger issues with extra chalantness, and lowk a real homegirl",
-      type: "images",
-      imageBoxes: 11
-    },
+  {
+    title: "Memes That Represent Jia",
+    text: "Here, I present to you some memes that I bothered to find after exactly 15 minutes of browsing my god forsaken pinterest feed upon researching on a moody, 1080p, anger issues with extra chalantness, and lowk a real homegirl",
+    type: "images",
+    imageBoxes: 11
+  },
     {
       title: "JIA RESEARCH PAPER",
       text: "A Study on JIA",
