@@ -22,9 +22,9 @@ Here's to some commemorative achievements:`,
       mostUsed: { value: '"I see"', label: "Most Used Term" },
       crashedOut: { value: "∞", label: "Times Crashed Out" },
       beingBigger: { value: 0, label: "Being The Bigger Person (Lol nah)" },
-      beAGoodFriend: { value: "I lost count yo", label: "Be a good friend" },
-      timesStronger: { value: "enough times", label: "Times you were stronger than anyone else" },
-      daysMadeSense: { value: "Idk about allat", label: "Days when you made sense" },
+      beAGoodFriend: { value: "lim(x→∞) x = ∞", label: "Be a good friend" },
+      timesStronger: { value: "45.7", label: "Times you were stronger than anyone else" },
+      daysMadeSense: { value: "3/365", label: "Days when you made sense" },
       selfInserted: { value: "Jesus fucking christ", label: "Times you self inserted yourself in the Kdrama or manhwa you watched" },
       ghostingCounter: { value: "Aw hell naw", label: "Ghosting people counter" }
       
