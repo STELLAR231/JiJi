@@ -117,7 +117,7 @@ canvas {
   justify-content: flex-start;
   align-items: center;
   padding-top: 40px;
-  padding-bottom: 120px;
+  padding-bottom: 40px;
   overflow-y: auto;
   transition: opacity 0.8s ease, visibility 0.8s ease;
 }
@@ -275,11 +275,13 @@ p {
 }
 
 .nav {
-  position: fixed;
-  bottom: 32px;
+  position: static;
+  bottom: auto;
   display: flex;
   gap: 16px;
   z-index: 10;
+  margin-top: 24px;
+  justify-content: center;
 }
 
 button {
@@ -308,11 +310,14 @@ button:disabled {
 }
 
 .bullets {
-  position: fixed;
-  bottom: 100px;
+  position: static;
+  bottom: auto;
   display: flex;
   gap: 12px;
   z-index: 10;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  justify-content: center;
 }
 
 .bullet {
@@ -345,6 +350,13 @@ button:disabled {
   border-radius: 8px;
   line-height: 1.6;
   animation: slideRight 0.5s ease-out;
+}
+
+/* Research paper text container should be scrollable and readable */
+.text-content.research-paper {
+  max-height: calc(70vh);
+  overflow-y: auto;
+  padding-right: 12px;
 }
 
 .bullet-item:nth-child(1) { animation-delay: 0s; border-left-color: var(--blue); }
@@ -402,6 +414,29 @@ button:disabled {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.milestone-extra {
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 8px;
+  margin: 6px 0;
+  line-height: 1.4;
+}
+
+.paper-credentials {
+  margin-top: 18px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.paper-confidential {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  background: rgba(255,255,255,0.02);
+  padding: 12px;
+  border-radius: 8px;
 }
 
 /* Image Upload Styles */
@@ -591,4 +626,15 @@ button:disabled {
 
 .uploaded-image:hover {
   opacity: 1;
+}
+
+/* Site footer displayed at the bottom of the app flow */
+.site-footer {
+  margin-top: 18px;
+  text-align: center;
+  opacity: 0.85;
+}
+.site-footer small {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.75);
 }

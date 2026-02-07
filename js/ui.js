@@ -6,6 +6,7 @@ const extra = document.getElementById("extra");
 const back = document.getElementById("back");
 const next = document.getElementById("next");
 const bulletContainer = document.getElementById("bullets");
+const nav = document.querySelector('.nav');
 const app = document.querySelector(".app");
 const startScreen = document.getElementById("start-screen");
 const startBtn = document.getElementById("start-btn");
@@ -29,19 +30,37 @@ function startExperience() {
 function render() {
   const page = PAGES[i];
   title.textContent = page.title;
-  desc.textContent = page.text;
+  // Render HTML in the description only when the text contains HTML tags
+  const looksLikeHTML = /<\/?[a-z][\s\S]*>/i.test(page.text || "");
+  if (looksLikeHTML) desc.innerHTML = page.text; else desc.textContent = page.text;
   extra.innerHTML = "";
 
   if (page.type === "bullets") {
     renderBullets(extra, page.items);
   } else if (page.type === "milestone") {
-    renderMilestone(extra, page.stats);
+    // If page has notes array, prepare HTML and attach as __notesHtml to stats
+    if (page.notes && Array.isArray(page.notes)) {
+      const notesHtml = page.notes.map(n => `<div class="milestone-extra">${n}</div>`).join('');
+      // clone stats to avoid mutating original
+      const statsClone = Object.assign({}, page.stats);
+      statsClone.__notesHtml = `<div style="margin-top:12px;">${notesHtml}</div>`;
+      renderMilestone(extra, statsClone);
+    } else {
+      renderMilestone(extra, page.stats);
+    }
   } else if (page.type === "images") {
     renderImageBoxes(extra, page.imageBoxes);
   } else if (page.type === "text") {
-    renderText(extra, page.content);
+    // Only render the rich text block when content is present to avoid empty bubbles
+    if (page.content) renderText(extra, page.content);
   } else if (page.chart) {
     renderChart(extra, page.chartType);
+  }
+
+  // Make text containers scrollable when they have substantial content
+  if (page.type === 'text') {
+    const textEl = extra.querySelector('.text-content');
+    if (textEl) textEl.classList.add('research-paper');
   }
 
   back.disabled = i === 0;
