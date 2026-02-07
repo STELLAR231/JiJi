@@ -112,13 +112,21 @@ window.renderBullets = function(container, items) {
 };
 
 window.renderMilestone = function(container, stats) {
-  const statRows = Object.values(stats)
-    .map(stat => `
+  // Render only real stat entries (ignore injected keys like __notesHtml)
+  const statRows = Object.keys(stats || {})
+    .filter(k => !k.startsWith("__"))
+    .map(k => stats[k])
+    .filter(stat => stat && (stat.label !== undefined))
+    .map(stat => {
+      const raw = stat.value;
+      const value = (typeof raw === 'number') ? raw.toLocaleString() : raw;
+      return `
       <div class="milestone-row">
         <div class="milestone-label">${stat.label}</div>
-        <div class="milestone-value">${stat.value.toLocaleString()}</div>
+        <div class="milestone-value">${value}</div>
       </div>
-    `)
+    `;
+    })
     .join("");
 
   let notesHtml = "";
