@@ -1,7 +1,7 @@
 window.PAGES = [
   {
     title: "Things that make Jia, Jia.",
-    text: "Yeah these are just straight up Jia things. Like no one else pulls this off.",
+    text: "Tell me you are Jia, without telling me you are Jia.",
     type: "bullets",
     items: [
       "Says \"Guys\" and then refuses to elaborate any further",
