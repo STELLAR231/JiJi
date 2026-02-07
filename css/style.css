@@ -416,6 +416,29 @@ button:disabled {
   }
 }
 
+.milestone-extra {
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 8px;
+  margin: 6px 0;
+  line-height: 1.4;
+}
+
+.paper-credentials {
+  margin-top: 18px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.paper-confidential {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  background: rgba(255,255,255,0.02);
+  padding: 12px;
+  border-radius: 8px;
+}
+
 /* Image Upload Styles */
 .image-grid {
   display: grid;

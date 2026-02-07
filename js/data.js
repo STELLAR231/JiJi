@@ -1,17 +1,18 @@
 window.PAGES = [
   {
-    title: "Things Only Jia Does",
+    title: "Things that make Jia, Jia.",
     text: "Yeah these are just straight up Jia things. Like no one else pulls this off.",
     type: "bullets",
     items: [
-      "Says \"Guys\" and then refuses to elaborate any further (peak comedy honestly)",
+      "Says \"Guys\" and then refuses to elaborate any further",
       "Tries to act cool while being giddy as hell on the inside and we all know it",
-      "Somehow manages to be mature when it matters most (character development fr)"
+      "Somehow manages to be mature when it matters most"
     ]
   },
   {
     title: "20th Birthday Milestone",
-    text: "20 years of chaos, warmth, and just... existing in the most Jia way possible.",
+    text: `I know I am going to be saying this far too any times today, at multiple places, but really, A very happy 20th birthday JIA. I would insert more here but I don't wanna run out of things to put into the birthday wish. May the 20 year of excellence continue and may you be forever the Jia everyone adores.
+Here's to some commemorative achievements:`,
     type: "milestone",
     stats: {
       days: { value: 7305, label: "Days Survived" },
@@ -22,6 +23,13 @@ window.PAGES = [
       crashedOut: { value: "∞", label: "Times Crashed Out" },
       beingBigger: { value: 0, label: "Being The Bigger Person (Lol nah)" }
     }
+    ,
+    notes: [
+      "Be a good friend: I lost count yo",
+      "Times you were stronger than anyone else: enough times",
+      "Days when you made sense: Idk about allat",
+      "Times you self inserted yourself in the Kdrama or manhwa you watched: Jesus fucking christ"
+    ]
   },
   {
     title: "Memes That Represent Jia",
@@ -101,6 +109,7 @@ window.PAGES = [
 
       <h5>C: Acknowledgments</h5>
       <p>The author acknowledges Jia, without whom this study would not exist. The paper boasts an astounding level of emotional error and deliberate mischaracterization for comedic effect, mixed in with the truthful and bottom heart thoughts.</p>
+      <p>I would like to thank both mine and Jia's parents for making us exist to make this even remotely feasible. I also acknowledge that I, did in fact find myself thoroughly amused and laughing at several key points during the whole run of my creative process. I wholly confess that I didn't give up when faced with a headache of what this site made the turmoil inside of me evolve into, and extend a heartfelt thank you to my patience for sticking with me till the end, and to you, yes, YOU, for reading all this so far and hopefully enjoying my flow of incoherency.</p>
 
       <h5>D: Future Work</h5>
       <ul>
@@ -108,6 +117,14 @@ window.PAGES = [
         <li>Expanded time constraint</li>
         <li>More fellow researchers to omit personal bias</li>
       </ul>
+      <div class="paper-credentials">
+        <p><strong>Conducted by Stellar Institute of Bullshitting and Technology.</strong></p>
+        <p>Our Motto: A day, but make it Jia.</p>
+      </div>
+
+      <div class="paper-confidential">
+        <p><strong>Confidentiality Notice:</strong> The reader and subject vow for confidentiality of this document. The possession of this potent information can cause unrest and havoc. As such, the distribution as well as advertisement of the paper is strictly prohibited. Should the legality of their actions come under our scrutiny, they will be forever barred from future researches, no invitation to read and much more.</p>
+      </div>
     `
   }
 ];

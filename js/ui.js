@@ -36,7 +36,16 @@ function render() {
   if (page.type === "bullets") {
     renderBullets(extra, page.items);
   } else if (page.type === "milestone") {
-    renderMilestone(extra, page.stats);
+    // If page has notes array, prepare HTML and attach as __notesHtml to stats
+    if (page.notes && Array.isArray(page.notes)) {
+      const notesHtml = page.notes.map(n => `<div class="milestone-extra">${n}</div>`).join('');
+      // clone stats to avoid mutating original
+      const statsClone = Object.assign({}, page.stats);
+      statsClone.__notesHtml = `<div style="margin-top:12px;">${notesHtml}</div>`;
+      renderMilestone(extra, statsClone);
+    } else {
+      renderMilestone(extra, page.stats);
+    }
   } else if (page.type === "images") {
     renderImageBoxes(extra, page.imageBoxes);
   } else if (page.type === "text") {

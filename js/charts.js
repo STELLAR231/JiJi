@@ -120,10 +120,16 @@ window.renderMilestone = function(container, stats) {
       </div>
     `)
     .join("");
-  
+
+  let notesHtml = "";
+  if (stats && stats.__notesHtml) {
+    notesHtml = stats.__notesHtml;
+  }
+
   container.innerHTML = `
     <div class="chart milestone-chart" style="margin-top: 20px;">
       ${statRows}
+      ${notesHtml}
     </div>
   `;
 };
